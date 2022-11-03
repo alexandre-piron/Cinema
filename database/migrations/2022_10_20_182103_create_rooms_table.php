@@ -19,8 +19,8 @@ return new class extends Migration
             //$table->Integer('nb_seat');
             $table->unsignedBigInteger('id_cinema');
             $table->foreign('id_cinema')
-                ->references('cinemas')
-                ->on('cinema')
+                ->references('id_cinema')
+                ->on('cinemas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
