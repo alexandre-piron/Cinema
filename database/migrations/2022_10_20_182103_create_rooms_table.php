@@ -14,7 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_room');
+            $table->string('name');
+            //$table->Integer('nb_seat');
+            $table->unsignedBigInteger('id_cinema');
+            $table->foreign('id_cinema')
+                ->references('cinemas')
+                ->on('cinema')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
