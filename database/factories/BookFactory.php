@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Casting>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
  */
-class CastingFactory extends Factory
+class BookFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,9 @@ class CastingFactory extends Factory
     public function definition()
     {
         return [
-            'role'=>fake()->realtext(50),
-            'firstname'=>fake()->firstname(),
-            'lastname'=>fake()->lastname(),
+            'id_user'=> rand(1,10),
+            'id_food' => rand(1,10),
+            'id_seat' => rand(1,10)
         ];
     }
 }
