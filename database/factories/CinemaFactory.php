@@ -17,7 +17,8 @@ class CinemaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' =>fake()->name(),
+            'city' => fake()-> city(),
         ];
     }
 }

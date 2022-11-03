@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Cinema;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CinemaSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class CinemaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Cinema::factory(10)->create();
     }
 }
