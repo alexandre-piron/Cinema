@@ -5,9 +5,15 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\FoodSeeder;
+use Database\Seeders\RateSeeder;
+use Database\Seeders\RoomSeeder;
+use Database\Seeders\SeatSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\CinemaSeeder;
 use Database\Seeders\CastingSeeder;
+use Database\Seeders\FavoriteSeeder;
+use Database\Seeders\BroadcastSeeder;
+use Database\Seeders\BookSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,12 +34,19 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
         $this->call([
-            CinemaSeeder::class,
-            FoodSeeder::class,
             UserSeeder::class,
             CastingSeeder::class,
             MovieSeeder::class,
+            SeatSeeder::class,
+            CinemaSeeder::class,
+            FoodSeeder::class,
             PlaySeeder::class,
+            RateSeeder::class,
+            RoomSeeder::class,
+            BroadcastSeeder::class,
+            FavoriteSeeder::class,
+            SellSeeder::class,
+            BookSeeder::class,
         ])
     }
 }
