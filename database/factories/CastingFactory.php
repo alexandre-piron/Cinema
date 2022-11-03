@@ -17,7 +17,9 @@ class CastingFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'role'=>fake ->realtext(50),
+            'firstname'=>fake ->firstname(),
+            'lastname'=>fake ->lastname(),
         ];
     }
 }
