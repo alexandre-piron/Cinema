@@ -17,7 +17,9 @@ class SeatFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'line' => rand(1,20),
+            'colonne' => rand(1,20),
+            'id_room' => rand(1,10)
         ];
     }
 }

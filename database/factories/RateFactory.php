@@ -17,7 +17,9 @@ class RateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_user' => rand(1,10),
+            'rate' => rand(1,5),
+            'id_movie' => rand(1,10)
         ];
     }
 }

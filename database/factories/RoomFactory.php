@@ -17,7 +17,9 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_room' => fake()->id(),
+            'name' => fake()->name(),
+            'id_cinema' => rand(1,10)
         ];
     }
 }
