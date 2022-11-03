@@ -14,8 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('broadcasts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_room');
+            $table->unsignedBigInteger('id_movie');
+            $table->date('The_date');
+            $table->foreign('id_room')
+                ->references('id_room')
+                ->on('rooms')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('id_movie')
+                ->references('id_movie')
+                ->on('movies')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

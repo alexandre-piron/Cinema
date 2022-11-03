@@ -14,8 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rates', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_movie');
+            $table->integer('rate', 5);
+            $table->foreign('id_user')
+                ->references('id_user')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('id_movie')
+                ->references('id_movie')
+                ->on('movies')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
