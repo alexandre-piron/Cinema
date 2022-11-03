@@ -17,7 +17,9 @@ class BroadcastFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_room' => rand(1,10),
+            'the_date' => fake()->date(),
+            'id_movie' => rand(1,10)
         ];
     }
 }

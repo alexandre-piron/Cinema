@@ -14,6 +14,6 @@ class SellSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Sell::factory(10)->create();
     }
 }
