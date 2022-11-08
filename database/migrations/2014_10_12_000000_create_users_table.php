@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('birthday');
             $table->string('email',100)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password',50);
+            $table->string('password',255);
             $table->Boolean('Admin');
             $table->rememberToken();
             $table->timestamps();

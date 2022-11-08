@@ -26,6 +26,7 @@ return new class extends Migration
                 ->on('castings')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

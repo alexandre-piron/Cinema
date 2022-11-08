@@ -17,8 +17,8 @@ class PlayFactory extends Factory
     public function definition()
     {
         return [
-            'id_movie'=>fake ->rand(1,10),
-            'id_casting'=>fake ->rand(1,10),
+            'id_movie'=> rand(1,10),
+            'id_casting'=> rand(1,10),
         ];
     }
 }

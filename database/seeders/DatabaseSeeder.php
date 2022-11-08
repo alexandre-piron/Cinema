@@ -47,6 +47,6 @@ class DatabaseSeeder extends Seeder
             FavoriteSeeder::class,
             SellSeeder::class,
             BookSeeder::class,
-        ])
+        ]);
     }
 }

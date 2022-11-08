@@ -17,7 +17,8 @@ class FavoriteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_cinema' => rand(1,10),
+            'id_user' => rand(1,10)
         ];
     }
 }

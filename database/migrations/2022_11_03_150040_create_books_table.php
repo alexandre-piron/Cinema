@@ -32,6 +32,7 @@ return new class extends Migration
                 ->on('seats')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
