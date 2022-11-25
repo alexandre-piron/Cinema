@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('castings', function (Blueprint $table) {
-            $table->id('id_casting');
+            $table->id();
             $table->string('role',50);
             $table->string('firstname',50);
             $table->string('lastname',50);

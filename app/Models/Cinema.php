@@ -9,7 +9,6 @@ class Cinema extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_cinema';
 
     public function users(){
         return $this->hasMany(User::class);

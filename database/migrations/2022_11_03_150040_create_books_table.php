@@ -18,17 +18,17 @@ return new class extends Migration
             $table->unsignedBigInteger('id_food');
             $table->unsignedBigInteger('id_seat');
             $table->foreign('id_user')
-                ->references('id_user')
+                ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_food')
-                ->references('id_food')
+                ->references('id')
                 ->on('foods')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_seat')
-                ->references('id_seat')
+                ->references('id')
                 ->on('seats')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

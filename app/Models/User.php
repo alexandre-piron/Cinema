@@ -43,9 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected $primaryKey = 'id_user';
-
     public function cinema(){
-        return $this->belongsTo(Cinema::class,'Admin');
+        return $this->belongsTo(Cinema::class,'id_cinema');
     }
 }

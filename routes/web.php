@@ -19,11 +19,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/dashboard', [\App\Http\Controllers\Auth\DashboardController::class,'show'])-> name('dashboard');
-
-    Route::get('/dashboard/{admin}', function () {
-        return view('dashboard');
-    })-> name('dashboard.admin') 
-      -> where('admin', '[0-9]+');
 });
 
 

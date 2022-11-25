@@ -17,12 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_cinema');
             $table->unsignedBigInteger('id_food');
             $table->foreign('id_cinema')
-                ->references('id_cinema')
+                ->references('id')
                 ->on('cinemas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_food')
-                ->references('id_food')
+                ->references('id')
                 ->on('foods')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
