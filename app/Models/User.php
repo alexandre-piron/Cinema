@@ -44,4 +44,8 @@ class User extends Authenticatable
     ];
 
     protected $primaryKey = 'id_user';
+
+    public function cinema(){
+        return $this->belongsTo(Cinema::class,'Admin');
+    }
 }
