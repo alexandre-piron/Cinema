@@ -17,12 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_movie');
             $table->unsignedBigInteger('id_casting');
             $table->foreign('id_movie')
-                ->references('id_movie')
+                ->references('id')
                 ->on('movies')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_casting')
-                ->references('id_casting')
+                ->references('id')
                 ->on('castings')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

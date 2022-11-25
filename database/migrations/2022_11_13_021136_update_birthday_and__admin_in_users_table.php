@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable()->change();
-            $table->unsignedInteger('Admin')->nullable()->change();
+            $table->unsignedInteger('id_cinema')->nullable()->change();
         });
     }
 

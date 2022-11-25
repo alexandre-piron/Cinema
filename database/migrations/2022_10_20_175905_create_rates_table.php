@@ -14,17 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rates', function (Blueprint $table) {
-            $table->id('id_rate');
+            $table->id();
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_movie');
             $table->integer('rate');
             $table->foreign('id_user')
-                ->references('id_user')
+                ->references('id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_movie')
-                ->references('id_movie')
+                ->references('id')
                 ->on('movies')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

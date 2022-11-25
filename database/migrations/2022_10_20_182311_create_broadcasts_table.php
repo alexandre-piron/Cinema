@@ -18,12 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_movie');
             $table->date('The_date');
             $table->foreign('id_room')
-                ->references('id_room')
+                ->references('id')
                 ->on('rooms')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('id_movie')
-                ->references('id_movie')
+                ->references('id')
                 ->on('movies')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
