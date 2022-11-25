@@ -14,4 +14,8 @@ class Cinema extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+
+    public function rooms(){
+        return $this->hasMany(Room::class);
+    }
 }
