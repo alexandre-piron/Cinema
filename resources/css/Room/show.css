@@ -1,0 +1,25 @@
+.grille{
+    display: flex;
+    flex-direction: column;
+}
+
+.ligne{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#ecran{
+    justify-content: center;
+}
+
+/*
+img{
+    width: 20%;
+    height: 20%;
+}
+
+.grille{
+    width: 100%;
+    height: 80%;
+}*/

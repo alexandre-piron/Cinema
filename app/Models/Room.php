@@ -10,6 +10,10 @@ class Room extends Model
     use HasFactory;
 
     public function cinema(){
-        return $this->belongsTo(Cinema::class);
+        return $this->belongsTo(Cinema::class, 'id_cinema');
+    }
+
+    public function seats(){
+        return $this->hasMany(Seat::class);
     }
 }

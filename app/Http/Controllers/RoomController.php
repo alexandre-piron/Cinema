@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Seat;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
-use App\Models\Room;
 
 class RoomController extends Controller
 {
@@ -47,7 +48,8 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+        $seats = Seat::all()->where('id_room', $room->id);
+        return view('room.show', compact('seats'), compact('room'));
     }
 
     /**

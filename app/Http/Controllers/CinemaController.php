@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Cinema;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
-use App\Models\Cinema;
 
 class CinemaController extends Controller
 {
@@ -47,7 +48,8 @@ class CinemaController extends Controller
      */
     public function show(Cinema $cinema)
     {
-        //
+        $rooms=Room::all()->where('id_cinema', $cinema->id);
+        return view('cinema.show', compact('cinema', 'rooms'));
     }
 
     /**
