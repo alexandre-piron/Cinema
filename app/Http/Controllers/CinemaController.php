@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Cinema;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
+use App\Models\Broadcast;
 
 class CinemaController extends Controller
 {

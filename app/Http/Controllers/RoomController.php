@@ -6,6 +6,8 @@ use App\Models\Room;
 use App\Models\Seat;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Models\Broadcast;
+use App\Models\Movie;
 
 class RoomController extends Controller
 {
@@ -49,7 +51,9 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         $seats = Seat::all()->where('id_room', $room->id);
-        return view('room.show', compact('seats'), compact('room'));
+        $movies_id = Broadcast::all()->where('id_room', $room->id)->pluck('id_movie', 'id_movie'); //pluck permet d'extraire seulement les valeurs de la colonne 'id_movie'
+        $movies = Movie::all()->whereIn('id', $movies_id);
+        return view('room.show', compact('seats'), compact('room'))->with(compact('movies'));
     }
 
     /**
