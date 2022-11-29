@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\SellController;
 use App\Http\Controllers\CinemaController;
 
 /*
@@ -22,7 +24,7 @@ Route::get('/', function () {
 Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/dashboard', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('dashboard');
     Route::get('/Salle', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('salle.show');
-    Route::get('/Food', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('food.show');
+    
     Route::get('/Salle', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('salle.show');
 
     //Cinéma
@@ -30,6 +32,14 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
     //Room
     Route::get('/Room/{room}', [RoomController::class,'show'])->name('room.show');
+
+    //Sell
+    Route::get('/Sell/edit/{cinema}', [SellController::class, 'edit'])->name('sell.edit');
+
+    //Food
+    Route::get('/Food', [FoodController::class,'show'])->name('food.show');
+    Route::get('/Food/edit/{food}', [FoodController::class,'edit'])->name('food.edit');
+    Route::patch('/Food/{food}', [FoodController::class, 'update'])->name('food.update');
 });
 
 

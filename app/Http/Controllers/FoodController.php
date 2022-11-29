@@ -58,7 +58,7 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        //
+        return view('food.edit', compact('food'));
     }
 
     /**
@@ -70,7 +70,10 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
-        //
+        $food = Food::find($request->id);
+        $food->fill($request->input());
+        $food->save();
+        return view('dashboard');
     }
 
     /**
