@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __($cinema->name) }}
+            <a href="{{route('dashboard', $cinema->id)}}"> {{ __($cinema->name) }} </a>
         </h2>
     </x-slot>
 
@@ -10,9 +10,24 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ul><p>Salles</p><br>
-                        @foreach ($rooms as $room)
-                            <li><a href="{{ route('room.show', $room->id) }}">Salle {{ $room->name }}</a></li>
-                        @endforeach
+                        <table class='table'>
+                            <thead>
+                                <tr>
+                                    <th scope="col">{{__('Nom de la salle')}}</th>
+                                    <th scope="col">{{__('Editer')}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($rooms as $room)
+                                    <tr>
+                                        <td><a href="{{ route('room.show', $room->id) }}">{{$room->name}}</a></td>
+                                        <td>
+                                        <a href="{{route('room.edit', $room->id)}}">Editer</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table><br>
                     </ul>
                 </div>
             </div>

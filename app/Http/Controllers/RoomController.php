@@ -64,7 +64,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        return view('room.edit', compact('room'));
     }
 
     /**
@@ -76,7 +76,10 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, Room $room)
     {
-        //
+        $room=Room::find($request->id);
+        $room->fill($request->input());
+        $room->save();
+        return view('dashboard');
     }
 
     /**

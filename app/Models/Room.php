@@ -9,6 +9,10 @@ class Room extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function cinema(){
         return $this->belongsTo(Cinema::class, 'id_cinema');
     }
