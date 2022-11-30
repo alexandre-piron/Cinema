@@ -39,7 +39,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     //Food
     Route::get('/Food', [FoodController::class,'show'])->name('food.show');
     Route::get('/Food/edit/{food}', [FoodController::class,'edit'])->name('food.edit');
+    Route::get('/Food/create', [FoodController::class,'create'])->name('food.create');
     Route::patch('/Food/{food}', [FoodController::class, 'update'])->name('food.update');
+    Route::post('Food/store', [FoodController::class, 'store'])->name('food.store');
 });
 
 

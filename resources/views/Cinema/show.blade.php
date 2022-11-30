@@ -44,7 +44,8 @@
                             @endforeach
                         </tbody>
                     </table><br>
-                    <a href="{{route('sell.edit', $cinema->id)}}">Editer les snacks vendus dans le cinéma</a>
+                    <a href="{{route('sell.edit', $cinema->id)}}">Editer les snacks vendus dans le cinéma</a><br>
+                    <a href="{{route('food.create')}}">Enregistrer des nouveaux snacks</a>
                 </div>
             </div>
         </div>

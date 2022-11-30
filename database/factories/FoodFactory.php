@@ -19,8 +19,7 @@ class FoodFactory extends Factory
         return [
             'name' => fake()-> name(50),
             'prix' => rand(5,20),
-            'description' => fake()->text(),
-            'image' => fake()->image(),
+            'description' => fake()->text()
         ];
     }
 }
