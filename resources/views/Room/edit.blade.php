@@ -16,6 +16,10 @@
         <input type="hidden" id="id" name="id" value="{{ $room->id }}"><br>
         <label for="nom">Nom de la salle</label>
         <input type="text" id="name" name="name" value="{{ $room->name }}"><br>
+        <label for="rangee">Nombre de rangées de sièges</label>
+        <input type="integer" id="rangee" name="nb_rangees" value="{{ $room->nb_rangees }}"><br>
+        <label for="siege">Nombre de sièges par rangée</label>
+        <input type="integer" id="siege" name="nb_sieges" value="{{ $room->nb_sieges }}"><br>
 
         <input id="sub" type="submit">
     </form>

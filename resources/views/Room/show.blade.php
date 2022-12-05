@@ -28,9 +28,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="grille">
                         <div class="ligne" id="ecran"><img src="/images/ecran.png"></div>
-                        @for($l=0; $l < 3; $l++)
+                        @for($l=0; $l < $room->nb_rangees; $l++)
                         <div class="ligne">
-                            @for($c=0; $c < 5; $c++)
+                            @for($c=0; $c < $room->nb_sieges; $c++)
                             <div class="colonne">
                                 @php ($siege='/images/seatEmpty.jpg')
                                 @foreach($seats as $seat)

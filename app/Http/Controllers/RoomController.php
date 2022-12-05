@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Seat;
+use App\Models\Movie;
+use App\Models\Cinema;
+use App\Models\Broadcast;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
-use App\Models\Broadcast;
-use App\Models\Movie;
 
 class RoomController extends Controller
 {
@@ -26,9 +27,9 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Cinema $cinema)
     {
-        //
+        return view('room.create', compact('cinema'));
     }
 
     /**
@@ -39,7 +40,8 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-        //
+        Room::create($request->all());
+        return view('dashboard');
     }
 
     /**

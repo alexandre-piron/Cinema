@@ -10,7 +10,10 @@ class Room extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'nb_rangees',
+        'nb_sieges',
+        'id_cinema'
     ];
 
     public function cinema(){

@@ -28,6 +28,7 @@
                                 @endforeach
                             </tbody>
                         </table><br>
+                        <a href="{{route('room.create', $cinema->id)}}">Créer une nouvelle salle</a>
                     </ul>
                 </div>
             </div>
