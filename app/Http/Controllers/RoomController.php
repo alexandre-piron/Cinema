@@ -41,7 +41,9 @@ class RoomController extends Controller
     public function store(StoreRoomRequest $request)
     {
         Room::create($request->all());
-        return view('dashboard');
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+        );
     }
 
     /**
@@ -82,7 +84,9 @@ class RoomController extends Controller
         $room=Room::find($request->id);
         $room->fill($request->input());
         $room->save();
-        return view('dashboard');
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+        );
     }
 
     /**
@@ -93,6 +97,9 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        Room::destroy($room->id);
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+        );
     }
 }

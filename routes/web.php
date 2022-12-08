@@ -38,6 +38,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::patch('/Room/{room}', [RoomController::class, 'update'])->name('room.update');
     Route::get('/Room/create/{cinema}', [RoomController::class, 'create'])->name('room.create');
     Route::post('/Room/store', [RoomController::class, 'store'])->name('room.store');
+    Route::get('/Room/destroy/{room}', [RoomController::class, 'destroy'])->name('room.destroy');
 
     //Sell
     Route::get('/Sell/edit/{cinema}', [SellController::class, 'edit'])->name('sell.edit');

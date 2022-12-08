@@ -24,6 +24,7 @@
                                         <td>
                                         <a href="{{route('room.edit', $room->id)}}">Editer</a>
                                         </td>
+                                        <td><a href="{{route('room.destroy', $room->id)}}">Supprimer</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

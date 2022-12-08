@@ -14,6 +14,7 @@
         @endif <!--checke les erreurs en fonction des paramètres dans UpdatecategorieRequest.php -->
         
         <input type="hidden" id="id" name="id" value="{{ $room->id }}"><br>
+        <input type="hidden" id="id_cinema" name="id_cinema" value="{{ $room->id_cinema }}"><br>
         <label for="nom">Nom de la salle</label>
         <input type="text" id="name" name="name" value="{{ $room->name }}"><br>
         <label for="rangee">Nombre de rangées de sièges</label>

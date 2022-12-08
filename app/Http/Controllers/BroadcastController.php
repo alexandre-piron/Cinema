@@ -40,7 +40,9 @@ class BroadcastController extends Controller
     public function store(StoreBroadcastRequest $request)
     {
         Broadcast::create($request->all());
-        return view('dashboard');
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $request->id_room]
+        );
     }
 
     /**
@@ -77,7 +79,9 @@ class BroadcastController extends Controller
         $broadcast=Broadcast::find($request->id);
         $broadcast->fill($request->input());
         $broadcast->save();
-        return view('dashboard');
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $diffusion->id_room]
+        );
     }
 
     /**
@@ -89,5 +93,8 @@ class BroadcastController extends Controller
     public function destroy(Broadcast $diffusion)
     {
         Broadcast::destroy($diffusion->id);
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $diffusion->id_room]
+        );
     }
 }
