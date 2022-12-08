@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\BroadcastController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\CinemaController;
+use App\Models\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/Food/create', [FoodController::class,'create'])->name('food.create');
     Route::patch('/Food/{food}', [FoodController::class, 'update'])->name('food.update');
     Route::post('Food/store', [FoodController::class, 'store'])->name('food.store');
+
+    //Broadcasts
+    Route::get('Broadcasts/create/{room}', [BroadcastController::class, 'create'])->name('broadcasts.create');
+    Route::get('Broadcasts/edit/{diffusion}', [BroadcastController::class, 'edit'])->name('broadcasts.edit');
+    Route::post('Broadcasts/store', [BroadcastController::class, 'store'])->name('broadcasts.store');
+    Route::get('Broadcasts/destroy/{diffusion}', [BroadcastController::class, 'destroy'])->name('broadcasts.destroy');
+    Route::patch('/Broadcasts/{diffusion}', [BroadcastController::class, 'update'])->name('broadcasts.update');
 });
 
 
