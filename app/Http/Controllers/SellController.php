@@ -7,6 +7,7 @@ use App\Models\Sell;
 use App\Models\Cinema;
 use App\Http\Requests\StoreSellRequest;
 use App\Http\Requests\UpdateSellRequest;
+use App\Models\Room;
 
 class SellController extends Controller
 {
@@ -25,9 +26,11 @@ class SellController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Cinema $cinema)
     {
-        //
+        $vendus=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food');
+        $foods=Food::all()->whereNotIn('id', $vendus);
+        return view('sell.create', compact('cinema', 'foods'));
     }
 
     /**
@@ -38,7 +41,10 @@ class SellController extends Controller
      */
     public function store(StoreSellRequest $request)
     {
-        //
+        Sell::create($request->all());
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+        );
     }
 
     /**
@@ -60,7 +66,8 @@ class SellController extends Controller
      */
     public function edit(Sell $sell, Cinema $cinema)
     {
-        $foods = Food::all();
+        $vendus=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food');
+        $foods=Food::all()->whereNotIn('id', $vendus);
         return view('sell.edit', compact('cinema', 'foods'));
     }
 
@@ -73,8 +80,7 @@ class SellController extends Controller
      */
     public function update(UpdateSellRequest $request, Sell $sell)
     {
-        $sell = Sell::where('id_cinema', $request->id_cinema, 'id_food', $request->id_food);
-        dd($sell);
+        $sell = Sell::find($request->id);
         $sell->fill($request->input());
         $sell->save();
         return redirect()->action(
@@ -90,6 +96,9 @@ class SellController extends Controller
      */
     public function destroy(Sell $sell)
     {
-        //
+        Sell::destroy($sell->id);
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $sell->id_cinema]
+        );
     }
 }

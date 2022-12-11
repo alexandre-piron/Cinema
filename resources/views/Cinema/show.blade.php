@@ -55,14 +55,19 @@
                                     <td> {{$food->description}} </td>
                                     <td> {{$food->prix}} € </td>
                                     <td>
-                                    <a href="{{route('food.edit', ['food' => $food->id, 'cinema' => $cinema->id])}}">Editer</a>
+                                    <a href="{{route('food.edit', ['food' => $food->id, 'cinema' => $cinema->id])}}"><div class="image"><img src="/images/ico_settings.png"></div></a>
                                     </td>
+                                    @foreach($sells as $sell)
+                                        @if($sell->id_food == $food->id)
+                                            <td><a href="{{route('sell.destroy', $sell->id)}}"><div class="image"><img src="/images/ico_delete.png"></div></a></td>
+                                        @endif
+                                    @endforeach
                                 </tr>
                             @endforeach
                         </tbody>
                     </table><br>
-                    <a href="{{route('sell.edit', $cinema->id)}}">Editer les snacks vendus dans le cinéma</a><br>
-                    <a href="{{route('food.create', $cinema->id)}}">Enregistrer des nouveaux snacks</a>
+                    <a href="{{route('sell.create', $cinema->id)}}">Vendre de nouveaux snacks dans le cinéma</a><br>
+                    <a href="{{route('food.create', $cinema->id)}}">Enregistrer de nouveaux snacks</a>
                 </div>
             </div>
         </div>

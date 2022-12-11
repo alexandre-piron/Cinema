@@ -1,8 +1,7 @@
 <table class='table'>
 
-    <form action="{{route('sell.update')}}" method="POST">
+    <form action="{{route('sell.store')}}" method="POST">
         @csrf
-        @method("PATCH")
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

@@ -38,12 +38,8 @@ class FoodController extends Controller
     public function store(StoreFoodRequest $request, Cinema $cinema)
     {
         Food::create($request->all());
-        $food = [
-            'id_cinema' => $cinema->id,
-            'id_food' => $request->id
-        ];
         return redirect()->action(
-            [SellController::class, 'store', ['id_cinema' => $cinema->id, 'id_food' => $request->id]]
+            [CinemaController::class, 'show'], ['cinema' => $cinema->id]
         );
         /*return redirect()->action(
             [CinemaController::class, 'show'], ['cinema' => $cinema->id]

@@ -41,8 +41,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::get('/Room/destroy/{room}', [RoomController::class, 'destroy'])->name('room.destroy');
 
     //Sell
-    Route::get('/Sell/edit/{cinema}', [SellController::class, 'edit'])->name('sell.edit');
-    Route::patch('/Sell', [SellController::class, 'update'])->name('sell.update');
+    Route::get('/Sell/create/{cinema}', [SellController::class, 'create'])->name('sell.create');
+    Route::post('/Sell', [SellController::class, 'store'])->name('sell.store');
+    Route::get('/Sell/destroy/{sell}', [SellController::class, 'destroy'])->name('sell.destroy');
 
     //Food
     Route::get('/Food', [FoodController::class,'show'])->name('food.show');
