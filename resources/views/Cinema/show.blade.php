@@ -55,14 +55,14 @@
                                     <td> {{$food->description}} </td>
                                     <td> {{$food->prix}} € </td>
                                     <td>
-                                    <a href="{{route('food.edit', $food->id)}}">Editer</a>
+                                    <a href="{{route('food.edit', ['food' => $food->id, 'cinema' => $cinema->id])}}">Editer</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table><br>
                     <a href="{{route('sell.edit', $cinema->id)}}">Editer les snacks vendus dans le cinéma</a><br>
-                    <a href="{{route('food.create')}}">Enregistrer des nouveaux snacks</a>
+                    <a href="{{route('food.create', $cinema->id)}}">Enregistrer des nouveaux snacks</a>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<form action="{{ route('food.store') }}" method="POST">
+<form action="{{ route('food.store', $cinema->id) }}" method="POST">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">

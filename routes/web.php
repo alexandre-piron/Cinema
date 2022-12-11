@@ -45,10 +45,10 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
     //Food
     Route::get('/Food', [FoodController::class,'show'])->name('food.show');
-    Route::get('/Food/edit/{food}', [FoodController::class,'edit'])->name('food.edit');
-    Route::get('/Food/create', [FoodController::class,'create'])->name('food.create');
+    Route::get('/Food/edit/{food}/cinema/{cinema}', [FoodController::class,'edit'])->name('food.edit');
+    Route::get('/Food/create/{cinema}', [FoodController::class,'create'])->name('food.create');
     Route::patch('/Food/{food}', [FoodController::class, 'update'])->name('food.update');
-    Route::post('Food/store', [FoodController::class, 'store'])->name('food.store');
+    Route::post('Food/store/{cinema}', [FoodController::class, 'store'])->name('food.store');
 
     //Broadcasts
     Route::get('Broadcasts/create/{room}', [BroadcastController::class, 'create'])->name('broadcasts.create');

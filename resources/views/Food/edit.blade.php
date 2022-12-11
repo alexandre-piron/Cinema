@@ -14,6 +14,7 @@
         @endif <!--checke les erreurs en fonction des paramètres dans UpdatecategorieRequest.php -->
         
         <input type="hidden" id="id" name="id" value="{{ $food->id }}"><br>
+        <input type="hidden" name="id_cinema" value="{{ $cinema->id }}"><br>
         <label for="nom">Nom du snack</label>
         <input type="text" id="name" name="name" value="{{ $food->name }}"><br>
         <label for="nom">Description</label>
