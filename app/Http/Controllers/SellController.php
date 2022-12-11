@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Food;
+use App\Models\Sell;
+use App\Models\Cinema;
 use App\Http\Requests\StoreSellRequest;
 use App\Http\Requests\UpdateSellRequest;
-use App\Models\Sell;
 
 class SellController extends Controller
 {
@@ -56,9 +58,10 @@ class SellController extends Controller
      * @param  \App\Models\Sell  $sell
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sell $sell)
+    public function edit(Sell $sell, Cinema $cinema)
     {
-        //
+        $foods = Food::all();
+        return view('sell.edit', compact('cinema', 'foods'));
     }
 
     /**
@@ -70,7 +73,13 @@ class SellController extends Controller
      */
     public function update(UpdateSellRequest $request, Sell $sell)
     {
-        //
+        $sell = Sell::where('id_cinema', $request->id_cinema, 'id_food', $request->id_food);
+        dd($sell);
+        $sell->fill($request->input());
+        $sell->save();
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $sell->id_cinema]
+        );
     }
 
     /**

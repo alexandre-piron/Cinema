@@ -42,6 +42,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
 
     //Sell
     Route::get('/Sell/edit/{cinema}', [SellController::class, 'edit'])->name('sell.edit');
+    Route::patch('/Sell', [SellController::class, 'update'])->name('sell.update');
 
     //Food
     Route::get('/Food', [FoodController::class,'show'])->name('food.show');

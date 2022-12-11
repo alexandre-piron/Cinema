@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('cinemas', function (Blueprint $table) {
             $table->id();
             $table->string('name',50);
-            //$table->Integer('nb_room)';
+            $table->Integer('nb_room')->default(2);
             $table->String('city',50);
             $table->timestamps();
         });

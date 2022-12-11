@@ -13,7 +13,7 @@ class UpdateSellRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateSellRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id_cinema' => 'required',
+            'id_food' => ' required'
         ];
     }
 }
