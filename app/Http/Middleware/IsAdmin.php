@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->id_cinema === ""){
+        if(Auth::user() && is_null(Auth::user()->id_cinema)){
             abort(403);
         }else{
             return $next($request);
