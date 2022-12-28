@@ -13,7 +13,7 @@ class UpdateRoomRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:3|max:25',
+            'id_cinema' => 'required',
+            'nb_rangees' => 'required',
+            'nb_sieges' => 'required'
         ];
     }
 }

@@ -32,17 +32,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\User::factory(10)->create();
+        //\App\Models\User::factory(10)->create();
         $this->call([
-            UserSeeder::class,
             CastingSeeder::class,
             MovieSeeder::class,
-            SeatSeeder::class,
             CinemaSeeder::class,
+            UserSeeder::class,
             FoodSeeder::class,
             PlaySeeder::class,
             RateSeeder::class,
             RoomSeeder::class,
+            SeatSeeder::class,
             BroadcastSeeder::class,
             FavoriteSeeder::class,
             SellSeeder::class,

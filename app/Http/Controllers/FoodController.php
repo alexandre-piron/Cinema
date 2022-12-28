@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFoodRequest;
 use App\Http\Requests\UpdateFoodRequest;
+use App\Models\Cinema;
 use App\Models\Food;
 
 class FoodController extends Controller
@@ -23,9 +24,9 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Cinema $cinema)
     {
-        //
+        return view('food.create', compact('cinema'));
     }
 
     /**
@@ -34,9 +35,15 @@ class FoodController extends Controller
      * @param  \App\Http\Requests\StoreFoodRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFoodRequest $request)
+    public function store(StoreFoodRequest $request, Cinema $cinema)
     {
-        //
+        Food::create($request->all());
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $cinema->id]
+        );
+        /*return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $cinema->id]
+        );*/
     }
 
     /**
@@ -56,9 +63,9 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function edit(Food $food)
+    public function edit(Food $food, Cinema $cinema)
     {
-        //
+        return view('food.edit', compact('food', 'cinema'));
     }
 
     /**
@@ -70,7 +77,12 @@ class FoodController extends Controller
      */
     public function update(UpdateFoodRequest $request, Food $food)
     {
-        //
+        $food = Food::find($request->id);
+        $food->fill($request->input());
+        $food->save();
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+        );
     }
 
     /**

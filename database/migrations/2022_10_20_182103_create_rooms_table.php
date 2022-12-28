@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            //$table->Integer('nb_seat');
+            $table->integer('nb_sieges')->default(5);
+            $table->integer('nb_rangees')->default(3);
             $table->unsignedBigInteger('id_cinema');
             $table->foreign('id_cinema')
                 ->references('id')

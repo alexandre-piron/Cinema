@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Seat;
+use App\Models\Movie;
+use App\Models\Cinema;
+use App\Models\Broadcast;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 
@@ -24,9 +27,9 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Cinema $cinema)
     {
-        //
+        return view('room.create', compact('cinema'));
     }
 
     /**
@@ -37,7 +40,10 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
-        //
+        Room::create($request->all());
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+        );
     }
 
     /**
@@ -49,7 +55,10 @@ class RoomController extends Controller
     public function show(Room $room)
     {
         $seats = Seat::all()->where('id_room', $room->id);
-        return view('room.show', compact('seats'), compact('room'));
+        $movies_id = Broadcast::all()->where('id_room', $room->id)->pluck('id_movie', 'id_movie'); //pluck permet d'extraire seulement les valeurs de la colonne 'id_movie'
+        $movies = Movie::all()->whereIn('id', $movies_id);
+        $diffusions=Broadcast::all()->where('id_room',$room->id);
+        return view('room.show', compact('seats','room','movies'))->with(compact('diffusions'));
     }
 
     /**
@@ -60,7 +69,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        //
+        return view('room.edit', compact('room'));
     }
 
     /**
@@ -72,7 +81,12 @@ class RoomController extends Controller
      */
     public function update(UpdateRoomRequest $request, Room $room)
     {
-        //
+        $room=Room::find($request->id);
+        $room->fill($request->input());
+        $room->save();
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+        );
     }
 
     /**
@@ -83,6 +97,9 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        Room::destroy($room->id);
+        return redirect()->action(
+            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+        );
     }
 }

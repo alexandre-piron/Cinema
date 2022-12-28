@@ -13,7 +13,7 @@ class UpdateFoodRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateFoodRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:2|max:25',
+            'description' => 'required',
+            'prix' => 'required'
         ];
     }
 }

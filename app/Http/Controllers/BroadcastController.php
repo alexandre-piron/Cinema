@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Movie;
+use App\Models\Broadcast;
 use App\Http\Requests\StoreBroadcastRequest;
 use App\Http\Requests\UpdateBroadcastRequest;
-use App\Models\Broadcast;
 
 class BroadcastController extends Controller
 {
@@ -23,9 +25,10 @@ class BroadcastController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Room $room)
     {
-        //
+        $movies = Movie::all();
+        return view('broadcasts.create', compact('room', 'movies'));
     }
 
     /**
@@ -36,7 +39,10 @@ class BroadcastController extends Controller
      */
     public function store(StoreBroadcastRequest $request)
     {
-        //
+        Broadcast::create($request->all());
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $request->id_room]
+        );
     }
 
     /**
@@ -56,9 +62,9 @@ class BroadcastController extends Controller
      * @param  \App\Models\Broadcast  $broadcast
      * @return \Illuminate\Http\Response
      */
-    public function edit(Broadcast $broadcast)
+    public function edit(Broadcast $diffusion)
     {
-        //
+        return view('broadcasts.edit', compact('diffusion'));
     }
 
     /**
@@ -68,9 +74,14 @@ class BroadcastController extends Controller
      * @param  \App\Models\Broadcast  $broadcast
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBroadcastRequest $request, Broadcast $broadcast)
+    public function update(UpdateBroadcastRequest $request, Broadcast $diffusion)
     {
-        //
+        $broadcast=Broadcast::find($request->id);
+        $broadcast->fill($request->input());
+        $broadcast->save();
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $diffusion->id_room]
+        );
     }
 
     /**
@@ -79,8 +90,11 @@ class BroadcastController extends Controller
      * @param  \App\Models\Broadcast  $broadcast
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Broadcast $broadcast)
+    public function destroy(Broadcast $diffusion)
     {
-        //
+        Broadcast::destroy($diffusion->id);
+        return redirect()->action(
+            [RoomController::class, 'show'], ['room' => $diffusion->id_room]
+        );
     }
 }

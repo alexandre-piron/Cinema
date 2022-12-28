@@ -6,6 +6,9 @@ use App\Models\Room;
 use App\Models\Cinema;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
+use App\Models\Broadcast;
+use App\Models\Food;
+use App\Models\Sell;
 
 class CinemaController extends Controller
 {
@@ -49,7 +52,10 @@ class CinemaController extends Controller
     public function show(Cinema $cinema)
     {
         $rooms=Room::all()->where('id_cinema', $cinema->id);
-        return view('cinema.show', compact('cinema', 'rooms'));
+        $id_foods=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food', 'id_food');
+        $foods=Food::all()->whereIn('id', $id_foods);
+        $sells=Sell::all()->whereIn('id_cinema', $cinema->id);
+        return view('cinema.show', compact('cinema', 'rooms'))->with(compact('foods', 'sells'));
     }
 
     /**

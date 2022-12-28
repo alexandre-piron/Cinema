@@ -13,21 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('broadcasts', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_room');
-            $table->unsignedBigInteger('id_movie');
-            $table->date('The_date');
-            $table->foreign('id_room')
+            $table->string('firstname',50);
+            $table->string('lastname',50);
+            $table->date('birthday')->nullable();
+            $table->string('email',100)->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password',255);
+            $table->unsignedBigInteger('id_cinema')->default(1);
+            $table->foreign('id_cinema')
                 ->references('id')
-                ->on('rooms')
+                ->on('cinemas')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('id_movie')
-                ->references('id')
-                ->on('movies')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('broadcasts');
+        Schema::dropIfExists('users');
     }
 };
