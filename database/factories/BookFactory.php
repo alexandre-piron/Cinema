@@ -19,7 +19,8 @@ class BookFactory extends Factory
         return [
             'id_user'=> rand(1,10),
             'id_food' => rand(1,10),
-            'id_seat' => rand(1,10)
+            'id_seat' => rand(1,10),
+            'id_broadcast' => rand(1,10)
         ];
     }
 }

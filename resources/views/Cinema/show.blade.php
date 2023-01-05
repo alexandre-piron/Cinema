@@ -15,6 +15,10 @@
                                 <tr>
                                     <th scope="col">{{__('Nom de la salle')}}</th>
                                     <th scope="col">{{__('Editer')}}</th>
+                                    <th scope="col">{{__('Supprimer')}}</th>
+                                    <th scope="col">{{__('Diffusion')}}</th>
+                                    <th scope="col">{{__('Date de diffusion')}}</th>
+                                    <th scope="col">{{__('Places restantes')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,6 +29,33 @@
                                         <a href="{{route('room.edit', $room->id)}}"><div class="image"><img src="/images/ico_settings.png"></div></a>
                                         </td>
                                         <td><a href="{{route('room.destroy', $room->id)}}"><div class="image"><img src="/images/ico_delete.png"></div></a></td>
+                                        @foreach($broadcasts as $broadcast)
+                                            @foreach($movies as $movie)
+                                                @if($movie->id==$broadcast->id_movie)
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>{{$movie->name}}</td>
+                                                        <td>{{$broadcast->The_date}}</td>
+                                                        @foreach($rooms as $room)
+                                                            @if($room->id==$broadcast->id_room)
+                                                                @php($nbplaces=$room->nb_sieges*$room->nb_rangees);
+                                                                @php($places_occupees=0);
+                                                                @foreach($books as $book)
+                                                                    @if($book->id_broadcast==$broadcast->id)
+                                                                        @php($places_occupees+=1);
+                                                                    @endif
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                        <td>{{$nbplaces-$places_occupees}}/{{$nbplaces}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
                                     </tr>
                                 @endforeach
                             </tbody>

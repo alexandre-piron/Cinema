@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Food;
 use App\Models\Room;
+use App\Models\Seat;
 use App\Models\Sell;
-use App\Models\Cinema;
 use App\Models\User;
+use App\Models\Movie;
+use App\Models\Cinema;
 use App\Models\Broadcast;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\callback;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
-
-use function PHPUnit\Framework\callback;
 
 class CinemaController extends Controller
 {
@@ -66,10 +69,16 @@ class CinemaController extends Controller
             $cinema=$cine;
         }
         $rooms=Room::all()->where('id_cinema', $cinema->id);
+        $id_rooms=Room::all()->where('id_cinema', $cinema->id)->pluck('id', 'id_room');
         $id_foods=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food', 'id_food');
         $foods=Food::all()->whereIn('id', $id_foods);
         $sells=Sell::all()->whereIn('id_cinema', $cinema->id);
-        return view('cinema.show', compact('cinema', 'rooms'))->with(compact('foods', 'sells'));
+        $broadcasts=Broadcast::all()->whereIn('id_room', $id_rooms);
+        $id_broadcasts = $broadcasts->pluck('id', 'id_broadcast');
+        $id_movies = $broadcasts->pluck('id_movie', 'id_movue');
+        $books=Book::all()->whereIn('id_broadcast', $id_broadcasts);
+        $movies=Movie::all()->whereIn('id', $id_movies);
+        return view('cinema.show', compact('cinema', 'rooms', 'movies'))->with(compact('foods', 'sells'))->with(compact('books', 'broadcasts'));
     }
 
     /**
