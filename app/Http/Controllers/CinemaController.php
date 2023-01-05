@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Food;
 use App\Models\Room;
+use App\Models\Sell;
 use App\Models\Cinema;
+use App\Models\User;
+use App\Models\Broadcast;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
-use App\Models\Broadcast;
-use App\Models\Food;
-use App\Models\Sell;
+
+use function PHPUnit\Framework\callback;
 
 class CinemaController extends Controller
 {
@@ -49,8 +54,17 @@ class CinemaController extends Controller
      * @param  \App\Models\Cinema  $cinema
      * @return \Illuminate\Http\Response
      */
-    public function show(Cinema $cinema)
+    public function show()
     {
+        $id_user=Auth::id();
+        $users=User::all()->where('id', $id_user);
+        foreach($users as $user){
+            $userConnecte=$user;
+        }
+        $cinemas=Cinema::all()->where('id', $userConnecte->id_cinema);
+        foreach($cinemas as $cine){
+            $cinema=$cine;
+        }
         $rooms=Room::all()->where('id_cinema', $cinema->id);
         $id_foods=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food', 'id_food');
         $foods=Food::all()->whereIn('id', $id_foods);
@@ -66,7 +80,7 @@ class CinemaController extends Controller
      */
     public function edit(Cinema $cinema)
     {
-        //
+        return view('cinema.edit', compact('cinema'));
     }
 
     /**
@@ -78,7 +92,12 @@ class CinemaController extends Controller
      */
     public function update(UpdateCinemaRequest $request, Cinema $cinema)
     {
-        //
+        $cinema = Cinema::find($request->id);
+        $cinema->fill($request->input());
+        $cinema->save();
+        return redirect()->action(
+            [CinemaController::class, 'home']
+        );
     }
 
     /**

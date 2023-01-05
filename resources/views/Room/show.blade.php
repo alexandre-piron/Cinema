@@ -39,8 +39,8 @@
                                                 <tr>
                                                 <td>{{$nom}}</td>
                                                 <td>{{$diffusion->The_date}}</td>
-                                                <td><a href="{{route('broadcasts.edit', $diffusion->id)}}">Modifier</a></td>
-                                                <td><a href="{{route('broadcasts.destroy', $diffusion->id)}}">Supprimer</a></td>
+                                                <td><a href="{{route('broadcasts.edit', $diffusion->id)}}"><div class="image"><img src="/images/ico_settings.png"></div></a></td>
+                                                <td><a href="{{route('broadcasts.destroy', $diffusion->id)}}"><div class="image"><img src="/images/ico_delete.png"></div></a></td>
                                                 </tr>
                                             @endif
                                         @endforeach

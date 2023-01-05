@@ -43,7 +43,7 @@ class SellController extends Controller
     {
         Sell::create($request->all());
         return redirect()->action(
-            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+            [CinemaController::class, 'show']
         );
     }
 

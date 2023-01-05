@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\CinemaController;
 use App\Models\Broadcast;
+use App\Models\Cinema;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +25,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'isAdmin'])->group(function(){
-    Route::get('/dashboard', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('dashboard');
-    Route::get('/Salle', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('salle.show');
-    
-    Route::get('/Salle', [\App\Http\Controllers\Auth\DashboardController::class,'show'])->name('salle.show');
 
+    Route::get('/home', [CinemaController::class, 'show'])->name('home');
     //Cinéma
-    Route::get('/Cinema/{cinema}', [CinemaController::class,'show'])->name('cinema.show');
+    //Route::get('/Cinema/{cinema}', [CinemaController::class,'show'])->name('cinema.show');
+    Route::get('/Cinema/edit/{cinema}', [CinemaController::class, 'edit'])->name('cinema.edit');
+    Route::patch('/Cinema/update/{cinema}', [CinemaController::class, 'update'])->name('cinema.update');
 
     //Room
     Route::get('/Room/{room}', [RoomController::class,'show'])->name('room.show');

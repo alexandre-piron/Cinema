@@ -42,7 +42,7 @@ class RoomController extends Controller
     {
         Room::create($request->all());
         return redirect()->action(
-            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+            [CinemaController::class, 'show']
         );
     }
 
@@ -85,7 +85,7 @@ class RoomController extends Controller
         $room->fill($request->input());
         $room->save();
         return redirect()->action(
-            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+            [CinemaController::class, 'show']
         );
     }
 
@@ -99,7 +99,7 @@ class RoomController extends Controller
     {
         Room::destroy($room->id);
         return redirect()->action(
-            [CinemaController::class, 'show'], ['cinema' => $room->id_cinema]
+            [CinemaController::class, 'show']
         );
     }
 }

@@ -81,7 +81,7 @@ class FoodController extends Controller
         $food->fill($request->input());
         $food->save();
         return redirect()->action(
-            [CinemaController::class, 'show'], ['cinema' => $request->id_cinema]
+            [CinemaController::class, 'show']
         );
     }
 
