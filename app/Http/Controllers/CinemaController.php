@@ -69,13 +69,13 @@ class CinemaController extends Controller
             $cinema=$cine;
         }
         $rooms=Room::all()->where('id_cinema', $cinema->id);
-        $id_rooms=Room::all()->where('id_cinema', $cinema->id)->pluck('id', 'id_room');
-        $id_foods=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food', 'id_food');
+        $id_rooms=$rooms->pluck('id');
+        $id_foods=Sell::all()->where('id_cinema', $cinema->id)->pluck('id_food');
         $foods=Food::all()->whereIn('id', $id_foods);
         $sells=Sell::all()->whereIn('id_cinema', $cinema->id);
         $broadcasts=Broadcast::all()->whereIn('id_room', $id_rooms);
-        $id_broadcasts = $broadcasts->pluck('id', 'id_broadcast');
-        $id_movies = $broadcasts->pluck('id_movie', 'id_movue');
+        $id_broadcasts = $broadcasts->pluck('id');
+        $id_movies = $broadcasts->pluck('id_movie');
         $books=Book::all()->whereIn('id_broadcast', $id_broadcasts);
         $movies=Movie::all()->whereIn('id', $id_movies);
         return view('cinema.show', compact('cinema', 'rooms', 'movies'))->with(compact('foods', 'sells'))->with(compact('books', 'broadcasts'));
