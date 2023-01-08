@@ -14,18 +14,52 @@
                             <thead>
                                 <tr>
                                     <th scope="col">{{__('Nom de la salle')}}</th>
+                                    <th scope="col">{{__('Diffusion')}}</th>
+                                    <th scope="col">{{__('Date de diffusion')}}</th>
+                                    <th scope="col">{{__('Places restantes')}}</th>
                                     <th scope="col">{{__('Editer')}}</th>
+                                    <th scope="col">{{__('Supprimer')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($rooms as $room)
                                     <tr>
                                         <td><a href="{{ route('room.show', $room->id) }}">{{$room->name}}</a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                         <a href="{{route('room.edit', $room->id)}}"><div class="image"><img src="/images/ico_settings.png"></div></a>
                                         </td>
                                         <td><a href="{{route('room.destroy', $room->id)}}"><div class="image"><img src="/images/ico_delete.png"></div></a></td>
                                     </tr>
+                                    @foreach($broadcasts as $broadcast)
+                                        @if($room->id==$broadcast->id_room)
+                                            @foreach($movies as $movie)
+                                                @if($movie->id==$broadcast->id_movie)
+                                                    <tr>
+                                                        <td>--</td>
+                                                        <td>{{$movie->name}}</td>
+                                                        <td>{{$broadcast->The_date}}</td>
+                                                        @foreach($rooms as $room0) 
+                                                            @php($nbplaces=$room0->nb_sieges*$room0->nb_rangees)
+                                                            @php($places_occupees=0)
+                                                            @foreach($books as $book)
+                                                                @if($book->id_broadcast==$broadcast->id)
+                                                                    @php($places_occupees+=1)
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                        <td>{{$nbplaces-$places_occupees}}/{{$nbplaces}}</td>
+                                                        <td>
+                                        <a href="{{route('broadcasts.edit', $broadcast->id)}}"><div class="image"><img src="/images/ico_settings.png"></div></a>
+                                        </td>
+                                        <td><a href="{{route('broadcasts.destroy', $broadcast->id)}}"><div class="image"><img src="/images/ico_delete.png"></div></a></td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
                                 @endforeach
                             </tbody>
                         </table><br>
