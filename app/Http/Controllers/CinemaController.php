@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Food;
 use App\Models\Room;
 use App\Models\Sell;
-use App\Models\Cinema;
 use App\Models\User;
+use App\Models\Cinema;
 use App\Models\Broadcast;
+use App\Mail\HappyBirthday;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Mail;
+use function PHPUnit\Framework\callback;
 use App\Http\Requests\StoreCinemaRequest;
 use App\Http\Requests\UpdateCinemaRequest;
-
-use function PHPUnit\Framework\callback;
 
 class CinemaController extends Controller
 {
@@ -47,6 +50,18 @@ class CinemaController extends Controller
     {
         //
     }
+
+    public static function email_anniv(){
+        $users=User::all()
+        ->filter(function ($user ) {
+            return date('m-d', strtotime($user->birthday)) === Carbon::now()->format('m-d');
+        })
+        ->where('id_cinema',null);
+        foreach($users as $user){
+            Mail::to($user->email)->send(new HappyBirthday($user->firstname));
+        }  
+    }
+
 
     /**
      * Display the specified resource.

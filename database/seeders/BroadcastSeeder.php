@@ -15,6 +15,6 @@ class BroadcastSeeder extends Seeder
      */
     public function run()
     {
-        Broadcast::factory(10)->create();
+        Broadcast::factory(20)->create();
     }
 }
