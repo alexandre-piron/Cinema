@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command('inspire')->hourly();
         $schedule->call(function(){
             CinemaController::email_anniv();
-        })->dailyAt('06:00');
+        })->dailyAt('06:00');//->dailyAt('06:00');
 
     }
 
