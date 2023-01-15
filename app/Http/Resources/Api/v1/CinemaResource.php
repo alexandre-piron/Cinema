@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BroadcastResource extends JsonResource
+class CinemaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,9 @@ class BroadcastResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_room',
-            'id_moovie',
-            'The_date',
+            'name',
+            'nb_room',
+            'city',
         ];
     }
 }

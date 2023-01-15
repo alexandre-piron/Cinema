@@ -3,16 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cinema;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class CinemaController extends Controller
+class RoomController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->authorizeResource(Cinema::class, 'cinema');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +15,17 @@ class CinemaController extends Controller
      */
     public function index()
     {
-        return Cinema::all();
+        return new RoomCollection(Room::all());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -31,17 +36,27 @@ class CinemaController extends Controller
      */
     public function store(Request $request)
     {
-        $cinema = Cinema::create($request->all());
-        return $cinema;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cinema  $cinema
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(Cinema $cinema)
+    public function show(Room $room)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Room  $room
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Room $room)
     {
         //
     }
@@ -50,10 +65,10 @@ class CinemaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cinema  $cinema
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cinema $cinema)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -61,10 +76,10 @@ class CinemaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cinema  $cinema
+     * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cinema $cinema)
+    public function destroy(Room $room)
     {
         //
     }

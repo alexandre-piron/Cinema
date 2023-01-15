@@ -18,7 +18,7 @@ class CinemaPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class CinemaPolicy
      */
     public function view(User $user, Cinema $cinema)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class CinemaPolicy
      */
     public function create(User $user)
     {
-        //
+        return false;
     }
 
     /**
@@ -53,7 +53,14 @@ class CinemaPolicy
      */
     public function update(User $user, Cinema $cinema)
     {
-        //
+        return true;
+        /*
+        if($user->cinema()){
+            return true;
+        }
+        else{
+            return false;
+        }*/
     }
 
     /**
@@ -65,7 +72,12 @@ class CinemaPolicy
      */
     public function delete(User $user, Cinema $cinema)
     {
-        //
+        if($user->cinema()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -89,6 +101,6 @@ class CinemaPolicy
      */
     public function forceDelete(User $user, Cinema $cinema)
     {
-        //
+        return false;
     }
 }

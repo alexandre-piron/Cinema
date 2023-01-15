@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function cinema(){
         return $this->belongsTo(Cinema::class,'id_cinema');
     }
+
+    public function isAdmin(){
+        return $this->role == 1;
+    }
 }
