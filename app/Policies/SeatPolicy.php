@@ -18,7 +18,7 @@ class SeatPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class SeatPolicy
      */
     public function view(User $user, Seat $seat)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class SeatPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class SeatPolicy
      */
     public function update(User $user, Seat $seat)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class SeatPolicy
      */
     public function delete(User $user, Seat $seat)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

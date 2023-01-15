@@ -18,7 +18,7 @@ class CastingPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class CastingPolicy
      */
     public function view(User $user, Casting $casting)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class CastingPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class CastingPolicy
      */
     public function update(User $user, Casting $casting)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class CastingPolicy
      */
     public function delete(User $user, Casting $casting)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

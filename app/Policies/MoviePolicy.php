@@ -18,7 +18,7 @@ class MoviePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class MoviePolicy
      */
     public function view(User $user, Movie $movie)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class MoviePolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class MoviePolicy
      */
     public function update(User $user, Movie $movie)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class MoviePolicy
      */
     public function delete(User $user, Movie $movie)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

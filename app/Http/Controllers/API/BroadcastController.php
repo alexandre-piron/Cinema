@@ -59,7 +59,7 @@ class BroadcastController extends Controller
     public function update(UpdateBroadcastRequest $request, Broadcast $broadcast)
     {
         $broadcast->update($request->validated());
-        return response()->json(['success' => true, 'msg' => 'Diffusion créée', 'broadcast' => new BroadcastResource($broadcast)], 201);
+        return response()->json(['success' => true, 'msg' => 'Diffusion mise à jour', 'broadcast' => new BroadcastResource($broadcast)], 201);
     }
 
     /**

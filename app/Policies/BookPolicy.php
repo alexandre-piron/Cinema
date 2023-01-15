@@ -18,7 +18,7 @@ class BookPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class BookPolicy
      */
     public function view(User $user, Book $book)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class BookPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

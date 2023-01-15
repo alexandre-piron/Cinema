@@ -18,7 +18,7 @@ class PlayPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class PlayPolicy
      */
     public function view(User $user, Play $play)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class PlayPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class PlayPolicy
      */
     public function update(User $user, Play $play)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class PlayPolicy
      */
     public function delete(User $user, Play $play)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

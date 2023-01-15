@@ -18,7 +18,7 @@ class RatePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class RatePolicy
      */
     public function view(User $user, Rate $rate)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class RatePolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class RatePolicy
      */
     public function update(User $user, Rate $rate)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class RatePolicy
      */
     public function delete(User $user, Rate $rate)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

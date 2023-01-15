@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\UpdateMovieRequest;
+use App\Http\Resources\Api\v1\MovieResource;
+use App\Http\Resources\API\v1\MovieCollection;
 
 class MovieController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Movie::class, 'movie');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return Movie::all();
+        return new MovieCollection(Movie::all());
     }
 
     /**
@@ -24,20 +32,21 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        //
+        $movie = Movie::create($request->validated());
+        return response()->json(['success' => true, 'msg' => 'Film créé', 'movie' => new MovieResource($movie)], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Movie  $movie
+     * @param  \App\Models\Movie  $Movie
      * @return \Illuminate\Http\Response
      */
     public function show(Movie $movie)
     {
-        //
+        return new MovieResource($movie);
     }
 
     /**
@@ -47,9 +56,10 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(UpdateMovieRequest $request, Movie $movie)
     {
-        //
+        $movie->update($request->validated());
+        return response()->json(['success' => true, 'msg' => 'Film mis à jour', 'movie' => new MovieResource($movie)], 201);
     }
 
     /**
@@ -60,6 +70,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return response()->json(['sucess' => true, 'msg' => 'Film supprimé'], 200);
     }
 }

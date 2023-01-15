@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MovieResource extends JsonResource
+class FoodResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class MovieResource extends JsonResource
     {
         return [
             'name' => $this->name,
+            'prix' => $this->prix,
             'description' => $this->description,
-            'poster' => $this->poster,
-            'trailer' => $this->trailer,
+            'id_broadcast' => $this->id_broadcast,
         ];
     }
 }

@@ -18,7 +18,7 @@ class FoodPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class FoodPolicy
      */
     public function view(User $user, Food $food)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class FoodPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class FoodPolicy
      */
     public function update(User $user, Food $food)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class FoodPolicy
      */
     public function delete(User $user, Food $food)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

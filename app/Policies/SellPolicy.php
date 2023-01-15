@@ -18,7 +18,7 @@ class SellPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class SellPolicy
      */
     public function view(User $user, Sell $sell)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class SellPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class SellPolicy
      */
     public function update(User $user, Sell $sell)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class SellPolicy
      */
     public function delete(User $user, Sell $sell)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
