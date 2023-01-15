@@ -18,7 +18,7 @@ class BroadcastPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class BroadcastPolicy
      */
     public function view(User $user, Broadcast $broadcast)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,12 @@ class BroadcastPolicy
      */
     public function create(User $user)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -53,7 +58,12 @@ class BroadcastPolicy
      */
     public function update(User $user, Broadcast $broadcast)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -65,7 +75,12 @@ class BroadcastPolicy
      */
     public function delete(User $user, Broadcast $broadcast)
     {
-        //
+        if($user->cinema() && $user->isAdmin()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -89,6 +104,6 @@ class BroadcastPolicy
      */
     public function forceDelete(User $user, Broadcast $broadcast)
     {
-        //
+        return false;
     }
 }

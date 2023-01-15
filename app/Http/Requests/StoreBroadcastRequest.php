@@ -24,7 +24,9 @@ class StoreBroadcastRequest extends FormRequest
     public function rules()
     {
         return [
-            'The_date' => 'required'
+            'id_room' => 'required',
+            'id_movie' => 'required',
+            'The_date' => 'required',
         ];
     }
 }

@@ -41,12 +41,14 @@ class RoomPolicy
      */
     public function create(User $user)
     {
+        return true;
+        /*
         if($user->cinema() && $user->isAdmin()){
             return true;
         }
         else{
             return false;
-        }
+        }*/
     }
 
     /**

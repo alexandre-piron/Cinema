@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\Broadcast;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBroadcastRequest;
+use App\Http\Requests\UpdateBroadcastRequest;
+use App\Http\Resources\Api\v1\BroadcastResource;
+use App\Http\Resources\API\v1\BroadcastCollection;
 
 class BroadcastController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Broadcast::class, 'broadcast');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class BroadcastController extends Controller
      */
     public function index()
     {
-        return Broadcast::all();
+        return new BroadcastCollection(Broadcast::all());
     }
 
     /**
@@ -24,9 +32,10 @@ class BroadcastController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBroadcastRequest $request)
     {
-        //
+        $broadcast = Broadcast::create($request->validated());
+        return response()->json(['success' => true, 'msg' => 'Diffusion créée', 'broadcast' => new BroadcastResource($broadcast)], 201);
     }
 
     /**
@@ -37,7 +46,7 @@ class BroadcastController extends Controller
      */
     public function show(Broadcast $broadcast)
     {
-        //
+        return new BroadcastResource($broadcast);
     }
 
     /**
@@ -47,9 +56,10 @@ class BroadcastController extends Controller
      * @param  \App\Models\Broadcast  $broadcast
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Broadcast $broadcast)
+    public function update(UpdateBroadcastRequest $request, Broadcast $broadcast)
     {
-        //
+        $broadcast->update($request->validated());
+        return response()->json(['success' => true, 'msg' => 'Diffusion créée', 'broadcast' => new BroadcastResource($broadcast)], 201);
     }
 
     /**
@@ -60,6 +70,7 @@ class BroadcastController extends Controller
      */
     public function destroy(Broadcast $broadcast)
     {
-        //
+        $broadcast->delete();
+        return response()->json(['sucess' => true, 'msg' => 'Diffusion supprimée'], 200);
     }
 }
