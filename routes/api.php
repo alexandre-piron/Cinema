@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Resources\Api\v1\UserResource;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\CinemaController;
 use App\Http\Controllers\API\BroadcastController;
@@ -53,6 +54,10 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/Room/create/{room}', [RoomController::class, 'create']);
     
     Route::get('/Room/destroy/{room}', [RoomController::class, 'destroy']);
+
+    //Favorites
+    Route::get('/favorite',[FavoriteController::class,'index']); //afficher les cinemas favoris
+    Route::post('/favorite',[FavoriteController::class,'store']); //ajouter un cinema dans les favoris
 });
 
 

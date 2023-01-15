@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\BroadcastController;
+use App\Models\Cinema;
+use App\Models\Broadcast;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\CinemaController;
-use App\Models\Broadcast;
-use App\Models\Cinema;
+use App\Http\Controllers\BroadcastController;
 
 /*
 |--------------------------------------------------------------------------

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cinema;
+use App\Models\Favorite;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreFavoriteRequest;
 use App\Http\Requests\UpdateFavoriteRequest;
-use App\Models\Favorite;
 
 class FavoriteController extends Controller
 {
@@ -16,6 +18,16 @@ class FavoriteController extends Controller
     public function index()
     {
         //
+        $id_user=Auth::id();
+        $cinema_favoris = array();
+
+        $favoris = Favorite::get()->where('id_user',$id_user);
+        
+        foreach ($favoris as $fav) {
+            $cinema = Cinema::get()->where('id',$fav['id_cinema']);
+            array_push($cinema_favoris,$cinema);
+        }
+        return $cinema_favoris;
     }
 
     /**
@@ -37,6 +49,7 @@ class FavoriteController extends Controller
     public function store(StoreFavoriteRequest $request)
     {
         //
+        Favorite::create($request->all());
     }
 
     /**
@@ -48,6 +61,7 @@ class FavoriteController extends Controller
     public function show(Favorite $favorite)
     {
         //
+        
     }
 
     /**
