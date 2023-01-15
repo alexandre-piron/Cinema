@@ -16,6 +16,25 @@ class MovieController extends Controller
     {
         $this->authorizeResource(Movie::class, 'movie');
     }
+
+
+    public function search(Request $request){
+    
+    $name = $request->input('name');
+
+    $query = Movie::query();
+
+    if($name) {
+        $query->where(function ($query) use ($name) {
+            $query->where('name', 'like', "%$name%");
+        });
+    }
+
+    $movies = $query->get();
+
+    return response()->json($movies);
+}
+
     /**
      * Display a listing of the resource.
      *

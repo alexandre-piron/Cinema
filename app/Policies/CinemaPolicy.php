@@ -53,14 +53,12 @@ class CinemaPolicy
      */
     public function update(User $user, Cinema $cinema)
     {
-        return true;
-        /*
         if($user->cinema() && $user->isAdmin()){
             return true;
         }
         else{
             return false;
-        }*/
+        }
     }
 
     /**

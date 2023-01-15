@@ -48,8 +48,10 @@ Route::get('/Play/{play}', [PlayController::class,'show']);
 Route::get('/Play', [PlayController::class,'index']);
 Route::get('/Rate/{rate}', [RateController::class,'show']);
 Route::get('/Rate', [RateController::class,'index']);
-Route::get('/Sell/{sell}', [SellController::class,'show']);
-Route::get('/Sell', [SellController::class,'index']);
+Route::get('/sell/{sell}', [SellController::class,'show']);
+Route::get('/sell', [SellController::class,'index']);
+
+Route::post('movie/search', [MovieController::class, 'search']);
 
 
 //Route::post('/register', [UserAuthController::class, 'register'])->name('user.register');
@@ -102,9 +104,9 @@ Route::middleware('auth:api')->group(function(){
     Route::patch('/Rate/{rate}', [RateController::class, 'update']);
     Route::get('/Rate/destroy/{rate}', [RateController::class, 'destroy']);
 
-    Route::post('/Sell/store', [SellController::class, 'store']);
-    Route::patch('/Sell/{sell}', [SellController::class, 'update']);
-    Route::get('/Sell/destroy/{sell}', [SellController::class, 'destroy']);
+    Route::post('/sell/store', [SellController::class, 'store']);
+    Route::patch('/sell/{sell}', [SellController::class, 'update']);
+    Route::get('/sell/destroy/{sell}', [SellController::class, 'destroy']);
 
     //Favorites
     Route::get('/favorite',[FavoriteController::class,'index']); //afficher les cinemas favoris
