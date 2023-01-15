@@ -24,8 +24,10 @@ class FavoriteController extends Controller
         $favoris = Favorite::get()->where('id_user',$id_user);
         
         foreach ($favoris as $fav) {
-            $cinema = Cinema::get()->where('id',$fav['id_cinema']);
-            array_push($cinema_favoris,$cinema);
+            $cinemas = Cinema::get()->where('id',$fav['id_cinema']);
+            foreach ($cinemas as $cinema) {
+                array_push($cinema_favoris,$cinema);
+            }  
         }
         return $cinema_favoris;
     }
