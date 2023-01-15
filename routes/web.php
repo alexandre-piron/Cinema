@@ -7,6 +7,7 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\CinemaController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\BroadcastController;
 
 /*

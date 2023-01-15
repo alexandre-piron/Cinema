@@ -9,6 +9,10 @@ class Favorite extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'id',
+    ];
+
     public function cinemas(){
         return $this->hasMany(Favorite::class);
     }

@@ -109,6 +109,7 @@ Route::middleware('auth:api')->group(function(){
     //Favorites
     Route::get('/favorite',[FavoriteController::class,'index']); //afficher les cinemas favoris
     Route::post('/favorite',[FavoriteController::class,'store']); //ajouter un cinema dans les favoris
+    Route::delete('/favorite/{favorite}',[FavoriteController::class,'destroy']); //supprimer un cinema des favoris
 });
 
 
