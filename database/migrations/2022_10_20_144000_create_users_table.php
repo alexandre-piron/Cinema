@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email',100)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',255);
-            $table->unsignedBigInteger('id_cinema')->default(1);
+            $table->unsignedBigInteger('id_cinema')->nullable();#si on met default(1), ça veut dire que tous les utilisateurs qui s'enregistrent sont administrateurs du cinema 1 aors que c'est pas le cas
             $table->foreign('id_cinema')
                 ->references('id')
                 ->on('cinemas')

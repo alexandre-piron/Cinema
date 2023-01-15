@@ -15,6 +15,6 @@ class RateSeeder extends Seeder
      */
     public function run()
     {
-        Rate::factory(10)->create();
+        Rate::factory(20)->create();
     }
 }

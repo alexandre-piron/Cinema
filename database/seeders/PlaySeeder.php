@@ -15,6 +15,6 @@ class PlaySeeder extends Seeder
      */
     public function run()
     {
-        Play::factory(10)->create();
+        Play::factory(20)->create();
     }
 }
