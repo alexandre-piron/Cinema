@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BroadcastResource extends JsonResource
+class RoomResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,9 +15,9 @@ class BroadcastResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id_room' => $this->id_room,
-            'id_movie' => $this->id_movie,
-            'The_date' => $this->The_date,
+            'name' => $this->name,
+            'nb_sieges' => $this->nb_sieges,
+            'nb_rangees' => $this->nb_rangees,
         ];
     }
 }

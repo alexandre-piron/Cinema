@@ -24,6 +24,8 @@ class UpdateBroadcastRequest extends FormRequest
     public function rules()
     {
         return [
+            'id_room' => 'required',
+            'id_movie' => 'required',
             'The_date' => 'required'
         ];
     }

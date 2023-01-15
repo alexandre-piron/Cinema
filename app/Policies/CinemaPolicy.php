@@ -55,7 +55,7 @@ class CinemaPolicy
     {
         return true;
         /*
-        if($user->cinema()){
+        if($user->cinema() && $user->isAdmin()){
             return true;
         }
         else{
@@ -72,7 +72,7 @@ class CinemaPolicy
      */
     public function delete(User $user, Cinema $cinema)
     {
-        if($user->cinema()){
+        if($user->cinema() && $user->isAdmin()){
             return true;
         }
         else{
